@@ -10,11 +10,12 @@ import { useEffect, useState } from 'react'
 import { AirdropFileEntry, generateProof } from '../util/airdrop'
 import { chain, microDenomToDenom } from '../util/config'
 import receivers from '../public/airdrop.json'
-import { Box, Button, Heading, Text } from '@chakra-ui/react'
+import { Box, Button, Heading, Text, useToast } from '@chakra-ui/react'
 
 const CONTRACT_ADDRESS = process.env.NEXT_PUBLIC_MERKLE_AIRDROP_ADDRESS || ''
 
 const Home: NextPage = () => {
+  const toast = useToast()
   const [userAirdropDetails, setUserAirdropDetails] =
     useState<AirdropFileEntry | null>(null)
   const [hasClaimed, setHasClaimed] = useState(false)
@@ -58,9 +59,18 @@ const Home: NextPage = () => {
         'auto'
       )
       console.log('successfully claimed!')
+      toast({
+        title: 'Airdrop successfully claimed!',
+        status: 'success',
+      })
+      setHasClaimed(true)
     } catch (err) {
       // todo add pop up
       console.log('failed with', err)
+      toast({
+        title: 'An error has occurred, do you have JUNO tokens in your wallet?',
+        status: 'error',
+      })
     }
   }
 
