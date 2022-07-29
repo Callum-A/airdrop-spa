@@ -105,7 +105,10 @@ const Home: NextPage = () => {
   return (
     <Box>
       <Heading>Howl Airdrop</Heading>
-      <Box>
+      <Heading>
+        The airdrop claim window is now over. See you on mainnet!
+      </Heading>
+      {/* <Box>
         <Button
           colorScheme={account ? 'orange' : 'blue'}
           onClick={toggleConnect}
@@ -156,7 +159,7 @@ const Home: NextPage = () => {
             </div>
           )}
         </>
-      )}
+      )} */}
     </Box>
   )
 }
